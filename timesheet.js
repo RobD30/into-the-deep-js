@@ -1,5 +1,5 @@
 function initUI() {
-	$workEntryForm = $("[rel*=js-work-entry-form");
+	$workEntryForm = $("[rel*=js-work-entry-form]");
 	$workEntrySelectProject = $workEntryForm.find("[rel*=js-select-project]");
 	$workEntryDescription = $workEntryForm.find("[rel*=js-work-description]");
 	$workEntryTime = $workEntryForm.find("[rel*=js-work-time]");
