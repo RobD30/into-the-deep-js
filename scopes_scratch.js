@@ -1,16 +1,12 @@
-var foo = 'bar';
-
-function bar() {
+var foo = function bar() {
     var foo = 'baz';
 
     function baz(foo) {
-        foo = 'bam';
-        bam = 'yay';
+        foo = bar;
+        foo;
     }
     baz();
-}
+};
 
+foo();
 bar();
-foo;
-bam;
-baz();
