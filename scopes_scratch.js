@@ -10,3 +10,4 @@ var foo = function bar() {
 
 foo();
 bar();
+
