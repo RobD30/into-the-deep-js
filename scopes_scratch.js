@@ -1,6 +1,8 @@
-for (var i = 0; i < 5; i++) {
-    (function IIFE(){
-        var j = i;
-        console.log(j);
-    })();
-}
+var a = 2;
+a++;
+
+const b = 2;
+b++;
+
+const c = [2];
+c[0]++;
