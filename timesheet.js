@@ -135,7 +135,7 @@ function addWorkEntryToList(projectEntryData,workEntryData) {
 	var $workEntry = $(workEntryTemplate);
 	$workEntry.attr("data-work-entry-id",workEntryData.id);
 	$workEntry.find("[rel*=js-work-time]").text(formatTime(workEntryData.time));
-	$workEntry.find("[rel*=js-work-description]").text(formatWorkDescription(workEntryData.description));
+	setupWorkDescription(workEntryData,$workEntry.find("[rel*=js-work-description]"));
 
 	workEntryData.$element = $workEntry;
 
@@ -163,6 +163,21 @@ function addWorkEntryToList(projectEntryData,workEntryData) {
 	else {
 		$projectEntry.addClass("visible");
 		$projectWorkEntries.append($workEntry);
+	}
+}
+
+function setupWorkDescription(workEntryData,$workDescription) {
+	$workDescription.text(formatWorkDescription(workEntryData.description));
+
+	if (workEntryData.description.length > maxVisibleWorkDescriptionLength) {
+		$workDescription
+			.addClass("shortened")
+			.on("click",function onClick(){
+				$workDescription
+					.removeClass("shortened")
+					.off("click",onClick)
+					.text(workEntryData.description);
+			});
 	}
 }
 
