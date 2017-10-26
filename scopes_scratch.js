@@ -1,12 +1,12 @@
-var a = b();
-var c = d();
-a;
-c;
+a(1);
 
-function b() {
-    return c;
+function a(foo) {
+    if (foo > 20) return foo;
+    returnb(foo+2);
 }
-
-var d = function() {
-    return b();
-};
+function b(foo) {
+    return c(foo) + 1;
+}
+function c(foo) {
+    return a(foo*2);
+}
