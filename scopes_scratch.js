@@ -1,8 +1,13 @@
-function foo(bar) {
-    if (bar) {
-        console.log(baz);
-        let baz = bar;
-    }
+function foo() {
+    var bar = 'bar';
+
+    function baz() {
+        console.log(bar);
+    } ;
 }
 
-foo('bar');
+function bam() {
+    foo()();
+}
+
+back();
