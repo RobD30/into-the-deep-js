@@ -1,30 +1,33 @@
 function initUI() {
-	$workEntryForm = $("[rel*=js-work-entry-form]");
-	$workEntrySelectProject = $workEntryForm.find("[rel*=js-select-project]");
-	$workEntryDescription = $workEntryForm.find("[rel*=js-work-description]");
-	$workEntryTime = $workEntryForm.find("[rel*=js-work-time]");
-	$workEntrySubmit = $workEntryForm.find("[rel*=js-submit-work-entry]");
-	$totalTime = $("[rel*=js-total-work-time]");
-	$projectList = $("[rel*=js-project-list]");
+    $workEntryForm = $("[rel*=js-work-entry-form]");
+    $workEntrySelectProject = $workEntryForm.find("[rel*=js-select-project]");
+    $workEntryDescription = $workEntryForm.find("[rel*=js-work-description]");
+    $workEntryTime = $workEntryForm.find("[rel*=js-work-time]");
+    $workEntrySubmit = $workEntryForm.find("[rel*=js-submit-work-entry]");
+    $totalTime = $("[rel*=js-total-work-time]");
+    $projectList = $("[rel*=js-project-list]");
 
-	var handleClick = function(){
-		var projectId = $workEntrySelectProject.val();
-		var description = $workEntryDescription.val();
-		var minutes = $workEntryTime.val();
+    {
+        let handleClick;
+        handleClick = function submitNewWorkEntry() {
+            var projectId = $workEntrySelectProject.val();
+            var description = $workEntryDescription.val();
+            var minutes = $workEntryTime.val();
 
-		if (!validateWorkEntry(description,minutes)) {
-			alert("Oops, bad entry. Try again.");
-			$workEntryDescription[0].focus();
-			return;
-		}
+            if (!validateWorkEntry(description, minutes)) {
+                alert("Oops, bad entry. Try again.");
+                $workEntryDescription[0].focus();
+                return;
+            }
 
-		$workEntryDescription.val("");
-		$workEntryTime.val("");
-		addWorkToProject(Number(projectId),description,Number(minutes));
-		$workEntryDescription[0].focus();
-	};
+            $workEntryDescription.val("");
+            $workEntryTime.val("");
+            addWorkToProject(Number(projectId), description, Number(minutes));
+            $workEntryDescription[0].focus();
+        };
 
-	$workEntrySubmit.on("click",handleClick);
+        $workEntrySubmit.on("click", handleClick);
+    }
 }
 
 function validateWorkEntry(description,minutes) {
