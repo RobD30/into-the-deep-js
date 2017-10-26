@@ -1,13 +1,11 @@
-var foo = (function () {
-    var publicAPI = {
-        bar: function () {
-            publicAPI.baz();
-        },
-        baz: function () {
-            console.log('baz');
-        }
-    };
-    return publicAPI;
-})();
+function foo() {
+    console.log(this.bar);
+}
 
-foo.bar();
+var bar = 'bar1';
+var o2 = {bar: 'bar2', foo: foo};
+var o3 = {bar: 'bar3', foo: foo};
+
+foo();
+o2.foo();
+o3.foo();
