@@ -36,11 +36,6 @@ UI.init();
 
 var App = setupApp(UI);
 
-// hard coding some initial data
-App.addProject("client features");
-App.addProject("overhead");
-App.addProject("backlog");
-
 
 // **************************
 
@@ -210,7 +205,7 @@ function setupApp(UI) {
 	// **************************
 
 	function addProject(description) {
-		var project = Project(description);
+		var project = new Project(description);
 		projects.push(project);
 
 		UI.addProjectToList(project);
@@ -247,71 +242,67 @@ function setupApp(UI) {
 
 
 function Project(description) {
-	var projectId = Math.round(Math.random()*1E4);
-	var work = [];
-	var time = 0;
-
-	var publicAPI = {
-		getId: getId,
-		getDescription: getDescription,
-		getTime: getTime,
-		addWork: addWork,
-		getWorkEntryCount: getWorkEntryCount,
-		getWorkEntryLocation: getWorkEntryLocation
-	};
-
-	return publicAPI;
-
-
-	// **************************
-
-	function getId() {
-		return projectId;
-	}
-
-	function getDescription() {
-		return description;
-	}
-
-	function getTime() {
-		return time;
-	}
-
-	function addWork(workEntryData) {
-		workEntryData.id = work.length + 1;
-		work.push(workEntryData);
-
-		time = (time || 0) + workEntryData.time;
-
-		// multiple work entries now?
-		if (work.length > 1) {
-			// sort work entries in descending order of time spent
-			work.sort(function sortTimeDescending(a,b){
-				return b.time - a.time;
-			});
-		}
-	}
-
-	function getWorkEntryCount() {
-		return work.length;
-	}
-
-	function getWorkEntryLocation(workEntryId) {
-		// find where the entry sits in the new sorted list
-		var entryIdx;
-		for (let i = 0; i < work.length; i++) {
-			if (work[i].id == workEntryId) {
-				entryIdx = i;
-				break;
-			}
-		}
-
-		// insert the entry into the correct location in DOM
-		if (entryIdx < (work.length - 1)) {
-			return [ work[entryIdx + 1].id, /*insertBefore=*/true ];
-		}
-		else {
-			return [ work[entryIdx - 1].id, /*insertBefore=*/false ];
-		}
-	}
+	this.projectId = Math.round(Math.random()*1E4);
+	this.description = description;
+	this.work = [];
+	this.time = 0;
 }
+
+
+// **************************
+
+Project.prototype.getId = function getId(){
+	return this.projectId;
+};
+
+Project.prototype.getDescription = function getDescription(){
+	return this.description;
+};
+
+Project.prototype.getTime = function getTime(){
+	return this.time;
+};
+
+Project.prototype.addWork = function addWork(workEntryData){
+	workEntryData.id = this.work.length + 1;
+	this.work.push(workEntryData);
+
+	this.time = (this.time || 0) + workEntryData.time;
+
+	// multiple work entries now?
+	if (this.work.length > 1) {
+		// sort work entries in descending order of time spent
+		this.work.sort(function sortTimeDescending(a,b){
+			return b.time - a.time;
+		});
+	}
+};
+
+Project.prototype.getWorkEntryCount = function getWorkEntryCount(){
+	return this.work.length;
+};
+
+Project.prototype.getWorkEntryLocation = function getWorkEntryLocation(workEntryId){
+	// find where the entry sits in the new sorted list
+	var entryIdx;
+	for (let i = 0; i < this.work.length; i++) {
+		if (this.work[i].id == workEntryId) {
+			entryIdx = i;
+			break;
+		}
+	}
+
+	// insert the entry into the correct location in DOM
+	if (entryIdx < (this.work.length - 1)) {
+		return [ this.work[entryIdx + 1].id, /*insertBefore=*/true ];
+	}
+	else {
+		return [ this.work[entryIdx - 1].id, /*insertBefore=*/false ];
+	}
+};
+
+
+// hard coding some initial data
+App.addProject("client features");
+App.addProject("overhead");
+App.addProject("backlog");
