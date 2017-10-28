@@ -7,13 +7,10 @@ Foo.prototype.identify = function() {
 };
 
 var a1 = new Foo('a1');
-var a2 = new Foo('a2');
+a1.identify();
 
-a2.speak = function() {
-    alert('Hello, ' + this.identify() + '.');
+a1.identify = function() {
+    alert('Hello, ' + Foo.prototype.identify.call(this) + '.');
 };
 
-a1.constructor === Foo;
-a1.constructor === a2.constructor;
-a1.__proto__ === Foo.prototype;
-a1.__proto__ === a2.__proto__;
+a1.identify();
