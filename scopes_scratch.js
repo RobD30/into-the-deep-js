@@ -5,16 +5,15 @@ Foo.prototype.identify = function () {
     return 'I am ' + this.me;
 };
 
-
-function Bar(who) {
+var Bar = Object.create(Foo.prototype);
+Bar.init = function (who) {
     Foo.call(this, who);
-}
-Bar.prototype = Object.create(Foo.prototype);
+};
 
-bar.prototype.speak = function() {
+Bar.speak = function() {
     alert('Hello, ' + this.indentify() + '.');
 };
 
-var b1 = Object.creat(Bar.prototype);
-Bar.call(b1, 'b1');
+var b1 = Object.create(Bar);
+Bar.init('b1');
 b1.speak();
