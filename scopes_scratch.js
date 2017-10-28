@@ -1,8 +1,8 @@
-typeof foo;
-typeof 'foo';
-typeof 123;
-typeof true;
-typeof {a:1};
-typeof function() {alert(e);};
+var foo;
+typeof foo; // "undefined"
 
-typeof null; // "object"... gwah?
+var bar = typeof bar;
+bar;    // "undefined"
+typeof bar; // "string"
+
+typeof typeof 2; // "string"
