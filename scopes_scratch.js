@@ -1,20 +1,20 @@
 class Foo {
-    constructor(who) {
-        this.me = who;
-    }
-    identify() {
-        return 'I am ' + this.me;
-    }
+    this.me = who;
 }
+Foo.prototype.identify = function () {
+    return 'I am ' + this.me;
+};
 
-class Bar extends Foo {
-    identify() {
-        alert('Hello, ' +super.identify() + '.');
-    }
+
+function Bar(who) {
+    Foo.call(this, who);
 }
+Bar.prototype = Object.create(Foo.prototype);
 
-var b1 = new Bar('b1');
-var b2 = new Bar('b2');
+bar.prototype.speak = function() {
+    alert('Hello, ' + this.indentify() + '.');
+};
 
-b1 .identify();
-b2.identify();
+var b1 = Object.creat(Bar.prototype);
+Bar.call(b1, 'b1');
+b1.speak();
