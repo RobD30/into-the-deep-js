@@ -6,11 +6,18 @@ Foo.prototype.identify = function() {
     return 'I am ' + this.me;
 };
 
-var a1 = new Foo('a1');
-a1.identify();
+function Bar(who) {
+    Foo.call(this,who);
+}
 
-a1.identify = function() {
-    alert('Hello, ' + Foo.prototype.identify.call(this) + '.');
+Bar.prototyp = Object.create(Foo.prototype);
+
+Bar.prototype.speak = function() {
+    alert('Hello, ' + this.identify() + '.');
 };
 
-a1.identify();
+var b1 = new Bar('b1');
+var b2 = new Bar('b2');
+
+b1.speak();
+b2.speak();
