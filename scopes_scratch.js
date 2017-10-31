@@ -1,8 +1,12 @@
 var foo;
-typeof foo; // "undefined"
 
-var bar = typeof bar;
-bar;    // "undefined"
-typeof bar; // "string"
+foo = new Array(1,2,3); // never build a phantom array
 
-typeof typeof 2; // "string"
+foo = [1,2,3,]; // do
+
+foo = new Object(); // dont do this either
+foo.a = 1;
+foo.b = 2;
+foo.c = 3;
+
+foo = {a:1,b:2,c:3}; // this is legit though.
