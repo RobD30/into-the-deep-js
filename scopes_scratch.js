@@ -1,12 +1,16 @@
-var foo;
+var foo = '123';
+var baz = parseInt(foo, 10);
+baz;
 
-foo = new Array(1,2,3); // never build a phantom array
+baz = Number(foo);
+baz;
 
-foo = [1,2,3,]; // do
+baz = +foo;
+baz;
 
-foo = new Object(); // dont do this either
-foo.a = 1;
-foo.b = 2;
-foo.c = 3;
+baz = 456;
+foo = baz.toString();
+foo;
 
-foo = {a:1,b:2,c:3}; // this is legit though.
+foo = String(baz);
+foo;
