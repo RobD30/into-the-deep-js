@@ -1,15 +1,12 @@
 var foo = '123';
+    if (foo == true) {
+    alert('Wat!?');
+}
+
+foo = [];
 if (foo) {
     alert('Sure.');
 }
-
-foo = 0;
-if (foo) {
-    alert('Right.');
-}
 if (foo == false) {
-    alert('Yeah.');
+    alert('WAT!?');
 }
-
-var baz = foo || 'foo';
-baz;
