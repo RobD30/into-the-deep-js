@@ -1,10 +1,8 @@
-var foo = '123';
-var baz  = Boolean(foo);
-baz;
+var now  = +new Date();
+// now = Date.now(); // ES5 only!
 
-baz = !!foo;
-baz;
-
-// Explicitly implicit!
-baz = foo ? true : false;
-baz;
+var foo = 'foo';
+// `N -> -(N+1)
+if (~foo.indexOf('f')) {
+    alert('Fount it!');
+}
