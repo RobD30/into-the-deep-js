@@ -1,16 +1,15 @@
 var foo = '123';
-var baz = foo - 0;
-baz; // 123
+if (foo) {
+    alert('Sure.');
+}
 
-baz = foo - '0';
-baz; // 123
+foo = 0;
+if (foo) {
+    alert('Right.');
+}
+if (foo == false) {
+    alert('Yeah.');
+}
 
-baz = foo /1;
-baz; // 123
-
-baz = 456;
-foo = baz + '';
-foo; // "456"
-
-foo = baz - '';
-foo; // 456 ... Wat!?!
+var baz = foo || 'foo';
+baz;
