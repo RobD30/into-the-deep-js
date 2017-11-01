@@ -1,16 +1,10 @@
 var foo = '123';
-var baz = parseInt(foo, 10);
+var baz  = Boolean(foo);
 baz;
 
-baz = Number(foo);
+baz = !!foo;
 baz;
 
-baz = +foo;
+// Explicitly implicit!
+baz = foo ? true : false;
 baz;
-
-baz = 456;
-foo = baz.toString();
-foo;
-
-foo = String(baz);
-foo;
